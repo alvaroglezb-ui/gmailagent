@@ -1,4 +1,5 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # Email assistant triage prompt 
 triage_system_prompt = """
@@ -51,7 +52,7 @@ When handling emails, follow these steps:
 3. For responding to the email, draft a response email with the write_email tool
 4. For meeting requests, use the check_calendar_availability tool to find open time slots
 5. To schedule a meeting, use the schedule_meeting tool with a datetime object for the preferred_day parameter
-   - Today's date is """ + datetime.now().strftime("%Y-%m-%d") + """ - use this for scheduling meetings accurately
+   - Today's date is """ + datetime.now(ZoneInfo("Europe/Madrid")).strftime("%Y-%m-%d") + """ - use this for scheduling meetings accurately
 6. If you scheduled a meeting, then draft a short response email using the write_email tool
 7. After using the write_email tool, the task is complete
 8. If you have sent the email, then use the Done tool to indicate that the task is complete
@@ -89,7 +90,7 @@ When handling emails, follow these steps:
 4. For responding to the email, draft a response email with the write_email tool
 5. For meeting requests, use the check_calendar_availability tool to find open time slots
 6. To schedule a meeting, use the schedule_meeting tool with a datetime object for the preferred_day parameter
-   - Today's date is """ + datetime.now().strftime("%Y-%m-%d") + """ - use this for scheduling meetings accurately
+   - Today's date is """ + datetime.now(ZoneInfo("Europe/Madrid")).strftime("%Y-%m-%d") + """ - use this for scheduling meetings accurately
 7. If you scheduled a meeting, then draft a short response email using the write_email tool
 8. After using the write_email tool, the task is complete
 9. If you have sent the email, then use the Done tool to indicate that the task is complete
@@ -128,7 +129,7 @@ When handling emails, follow these steps:
 4. For responding to the email, draft a response email with the write_email tool
 5. For meeting requests, use the check_calendar_availability tool to find open time slots
 6. To schedule a meeting, use the schedule_meeting tool with a datetime object for the preferred_day parameter
-   - Today's date is """ + datetime.now().strftime("%Y-%m-%d") + """ - use this for scheduling meetings accurately
+   - Today's date is """ + datetime.now(ZoneInfo("Europe/Madrid")).strftime("%Y-%m-%d") + """ - use this for scheduling meetings accurately
 7. If you scheduled a meeting, then draft a short response email using the write_email tool
 8. After using the write_email tool, the task is complete
 9. If you have sent the email, then use the Done tool to indicate that the task is complete
@@ -149,7 +150,7 @@ When handling emails, follow these steps:
 
 # Default background information 
 default_background = """
-I'm Álvaro González Bielza, an AI technology consultant at Accenture.
+I'm Álvaro González Bielza, an AI technology consultant.
 """
 
 # Default response preferences 
@@ -188,7 +189,7 @@ default_triage_instructions = """
 Emails that are not worth responding to:
 - Marketing newsletters and promotional emails
 - Spam or suspicious emails
-- CC'd on FYI threads with no direct questions
+- CC'd
 
 There are also other things that should be known about, but don't require an email response. For these, you should notify (using the `notify` response). Examples of this include:
 - Team member out sick or on vacation

@@ -559,8 +559,12 @@ def send_email(
             original_from = "recipient@example.com"  # Will be overridden by user input
             thread_id = None
             
+        # Add signature to the response
+        signature = "\n\n--\n Mensaje gestionado por el agente de IA personal de Alvaro Gonzalez Bielza"
+        response_text_with_signature = response_text + signature
+
         # Create a message object
-        msg = MIMEText(response_text)
+        msg = MIMEText(response_text_with_signature)
         # Extract just the email address from the From header to avoid "Invalid To header" errors
         # The From header may contain a display name like "Álvaro González" <email@example.com>
         _, recipient_email = email.utils.parseaddr(original_from)

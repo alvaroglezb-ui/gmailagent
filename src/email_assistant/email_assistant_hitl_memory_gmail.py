@@ -1,7 +1,6 @@
 from typing import Literal
 
 from langchain.chat_models import init_chat_model
-
 from langgraph.graph import StateGraph, START, END
 from langgraph.store.base import BaseStore
 from langgraph.types import interrupt, Command
@@ -15,7 +14,6 @@ from email_assistant.utils import parse_gmail, format_for_display, format_gmail_
 from dotenv import load_dotenv
 
 load_dotenv(".env")
-
 # Get tools with Gmail tools
 tools = get_tools(["send_email_tool", "schedule_meeting_tool", "check_calendar_tool", "Question", "Done"], include_gmail=True)
 tools_by_name = get_tools_by_name(tools)
